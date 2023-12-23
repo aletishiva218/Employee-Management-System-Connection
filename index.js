@@ -52,7 +52,7 @@ app.post("/searchbyid",async (req,res)=>{
   employeeId = req.body.id;
   response = await axios.get(API_URL+employeeId)
   employeeData = response.data;
-  res.render("searchbyId",{employees:employeeData})
+  res.render("searchbyId",{employee:employeeData})
 })
 
 app.get("/searchbyfilter",(req,res)=>{
