@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Employee</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+       *{
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+       }
+       body{
+        background-color: #f1f2f6;
+       }
+       h2,h3{
+        text-align: center;
+    border-bottom: 2px solid #ced6e0;
+    padding: 0.5rem 0;
+       }
+       h3{
+        border: none;
+        border-bottom: 2px solid #ced6e0;
+        margin-bottom: 1rem;
+       }
+       .form-container{
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        width: fit-content;
+        margin: auto;
+        margin-top: 3rem;
+        box-shadow: 0 0 10px #00000057;
+        padding: 1rem;
+    border-radius: 1rem;
+       }
+       form{
+        align-self: center;
+        display: flex;
+        min-width: 10rem;
+        flex-direction: column;
+        row-gap: 1rem;
+        color: #747d8c;
+       }
+       form input{
+        border: none;
+        background-color: #f1f2f6;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+       }
+       form label{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 0.5rem;
+    }
+    .create-cancel-container{
+        display: flex;
+        justify-content: center;
+        column-gap: 1rem;
+    }
+       button,a{
+        border: none;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+    box-shadow: 0 0 10px #00000057;
+    width: fit-content;
+    background-color: #2ed573;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+       }
+       a{
+        background-color: #ff4757;
+       }
+       
+    </style>
+</head>
+<body>
+    <h2>Employee Management System</h2>
+    <div class="form-container">
+        <h3>Enter Employee details</h3>
+    <form action="/createemployee" method="POST">
+        <label for="name"><span>Name:</span><input type="text" name="name" id="name" required></label>
+        <label for="position"><span>Position:</span><input type="text" name="position" id="position" required></label>
+        <label for="department"><span>Department:</span><input type="text" name="department" id="department" required></label>
+        <label for="salary"><span>Salary:</span><input type="number" name="salary" id="salary" required></label>
+        <div class="create-cancel-container"><button type="submit" value="CREATE">CREATE</button><a href="/">CANCEL</a></div>
+    </form>
+    </div>
+</body>
+</html>

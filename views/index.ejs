@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee API UI</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+       *{
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+       }
+       body{
+        background-color: #f1f2f6;
+       }
+       ul{
+        list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem 0;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+       }
+       a{
+        text-decoration: none;
+        color: initial;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+    box-shadow: 0 0 10px #00000057;
+       }
+       h2{
+        text-align: center;
+    border-bottom: 2px solid #ced6e0;
+    padding: 0.5rem 0;
+       }
+       .create-a{
+        background-color: #2ed573;
+        color: white;
+       }
+       .search-a{
+        background-color: #2e81d5;
+        color: white;
+       }
+       table{
+        border-collapse: collapse;
+        width: 100%;
+        text-align: center;
+       }
+       table thead{
+        color: white;
+        background-color: #57606f;
+       }
+       table thead th,table tbody td{
+        padding: 0.5rem;
+       }
+       table tbody td{
+        color: #747d8c;
+       }
+       table tbody tr:nth-child(even){
+        background-color: #f1f2f6;
+       }
+       table tbody td:last-child{
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+       }
+       main{
+        background-color: white;
+        padding: 1rem;
+       }
+       .edit-delete-div{
+        display: flex;
+        gap: 0.5rem;
+        padding: 1rem 0;
+       }
+       .employee-div{
+        display: flex;
+        flex-direction: column;
+        margin: 0.5rem;
+        background-color: #f1f2f6;
+        padding: 0.5rem;
+        color: #747d8c;
+        display: none;
+       }
+       @media only screen and (max-width:669px) {
+        .employee-div{
+            display: flex;
+        }
+        table{
+            display: none;
+        }
+       }
+       button{
+        border: none;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+    box-shadow: 0 0 10px #00000057;
+       }
+       .delete-button{
+        background-color: #ff4757;
+        color: white;
+       }
+       .edit-button{
+        background-color: #3867d6;
+        color: white;
+       }
+       table tbody .no-data-container td{
+        background-color: #f1f2f6;
+        
+       }
+       .no-data{
+        text-align: center;
+       }
+       button{
+        cursor:pointer;
+       }
+      </style>
+</head>
+<body>
+    <h2>Employee Management System</h2>
+    <header>
+        <ul>
+            <li><a href="/create" class="create-a">CREATE</a></li>
+            <li><a href="/searchbyid" class="search-a">SEARCH <span>by</span> ID</a></li>
+            <li><a href="/searchbyfilter" class="search-a">SEARCH <span>by</span> Filters</a></li>
+        </ul>
+    </header>
+    <main>
+        <form method="POST">
+        <table>
+            <thead>
+            <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>POSITION</th>
+            <th>DEPARTMENT</th>
+            <th>SALARY</th>
+            <th>ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(employeesData.length>0){ %>
+            <% for(employee of employeesData){ %>
+            <tr>
+                <td><%= employee.id %></td>
+                <td><%= employee.name %></td>
+                <td><%= employee.position %></td>
+                <td><%= employee.department %></td>
+                <td><%= employee.salary %></td>
+                <td class="edit-delete-td"><button class="edit-button" type="submit" value="<%= employee.id %>" formaction="/update" name="id">EDIT</button><button class="delete-button" type="submit" value="<%= employee.id %>" formaction="/delete" name="id">DELETE</button></td>
+            </tr>
+            <% } %>
+            <%} else {%>
+            <tr class="no-data-container">
+                <td colspan=7>No data available</td>
+                <td style="display: none;"></td>
+            </tr>
+            <% } %>
+        </tbody>
+        </table>
+        <% if(employeesData.length>0){ %>
+            <% for(employee of employeesData){ %>
+        <div class="employee-div">
+            <span><%= employee.id %></span>
+            <span><%= employee.name %></span>
+            <span><%= employee.position %></span>
+            <span><%= employee.department %></span>
+            <span><%= employee.salary %></span>
+            <div class="edit-delete-div"><button class="edit-button"  type="submit" value="<%= employee.id %>" formaction="/update" name="id">EDIT</button><button class="delete-button"  type="submit" value="<%= employee.id %>" formaction="/delete" name="id">DELETE</button></div>
+        </div>
+        <% } %>
+        <% } else {%>
+            <div class="employee-div no-data">
+                No data available
+            </div>
+            <% } %>
+    </form>
+    </main>
+</body>
+</html>

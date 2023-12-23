@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Employee</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+       *{
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+       }
+       body{
+        background-color: #f1f2f6;
+       }
+       h2,h3{
+        text-align: center;
+    border-bottom: 2px solid #ced6e0;
+    padding: 0.5rem 0;
+       }
+       h3{
+        border: none;
+        border-bottom: 2px solid #ced6e0;
+        margin-bottom: 1rem;
+       }
+       .form-container{
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        width: fit-content;
+        margin: auto;
+        margin-top: 3rem;
+        box-shadow: 0 0 10px #00000057;
+        padding: 1rem;
+    border-radius: 1rem;
+       }
+       form{
+        align-self: center;
+        display: flex;
+        min-width: 10rem;
+        flex-direction: column;
+        row-gap: 1rem;
+        color: #747d8c;
+       }
+       form input{
+        border: none;
+        background-color: #f1f2f6;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+       }
+       form label{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 0.5rem;
+    }
+    .create-cancel-container{
+        display: flex;
+        justify-content: center;
+        column-gap: 1rem;
+    }
+       button,a{
+        border: none;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+    box-shadow: 0 0 10px #00000057;
+    width: fit-content;
+    background-color: #2ed573;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+       }
+       a{
+        background-color: #ff4757;
+       }
+       .employee-div{
+        display: flex;
+        flex-direction: column;
+        margin: 0.5rem;
+        background-color: #f1f2f6;
+        padding: 0.5rem;
+        color: #747d8c;
+       }
+       .no-data,.no-filter{
+        text-align: center;
+       }
+       main{
+        background-color: white;
+        margin-top: 2rem;
+        padding: 1rem;
+       }
+       button{
+        cursor:pointer;
+       }
+    </style>
+</head>
+<body>
+    <h2>Employee Management System</h2>
+    <div class="form-container">
+        <h3>Enter Employee details</h3>
+    <form action="/searchbyfilter" method="POST">
+        <label for="position"><span>Position:</span><input type="text" name="position" id="position"></label>
+        <label for="department"><span>Department:</span><input type="text" name="department" id="department"></label>
+        <div class="create-cancel-container"><button type="submit" value="SEARCH">SEARCH</button><a href="/">BACK</a></div>
+    </form>
+    </div>
+    <main>
+        <% if(locals.error) {%>
+            <div class="employee-div no-filter">
+                <%= error.nofilter %>
+            </div>
+        <%}%>
+        <% if(locals.employees){ %>
+            <% if(locals.employees.error){ %>
+            <div class="employee-div no-data">
+                Data not found
+            </div>
+            <% } else {%>
+                <% for(employee of employees){ %>
+                    <div class="employee-div">
+                        <span><%= employee.id %></span>
+                        <span><%= employee.name %></span>
+                        <span><%= employee.position %></span>
+                        <span><%= employee.department %></span>
+                        <span><%= employee.salary %></span>
+                    </div>
+                    <% } %>
+        <% }%>
+        <%}%>
+    </main>
+</body>
+</html>
